@@ -1,0 +1,11 @@
+{
+  "HomePage": {
+    "title": "Hello World",
+    "description": "Dev career and personal blog."
+  },
+  "LocaleSwitcher": {
+    "label": "Language",
+    "uz": "O'zbekcha",
+    "en": "English"
+  }
+}

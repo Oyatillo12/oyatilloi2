@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
+import { withContentCollections } from "@content-collections/next";
+import createNextIntlPlugin from "next-intl/plugin";
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
+const withNextIntl = createNextIntlPlugin({
+  experimental: {
+    createMessagesDeclaration: "./messages/en.json",
+  },
+});
 
-export default nextConfig;
+const nextConfig: NextConfig = {/* config options here */};
+
+export default withContentCollections(withNextIntl(nextConfig));

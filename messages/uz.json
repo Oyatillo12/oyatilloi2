@@ -1,0 +1,11 @@
+{
+  "HomePage": {
+    "title": "Salom Dunyo",
+    "description": "Dasturchilik karyerasi va shaxsiy blog."
+  },
+  "LocaleSwitcher": {
+    "label": "Til",
+    "uz": "O'zbekcha",
+    "en": "English"
+  }
+}
