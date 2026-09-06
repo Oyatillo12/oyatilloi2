@@ -10,6 +10,10 @@ const heights = { lg: 168, sm: 104 } as const;
  * absolutely positioned against the document, sits under everything
  * including the sticky header, and clips the drawing at the viewport edge,
  * so narrow screens see fewer letters instead of smaller ones.
+ *
+ * It is rendered by each page, so it depends on nothing between it and
+ * <body> being `position: relative` (neither `main` nor Container is).
+ * Positioning one of them would pin the watermark to the content column.
  */
 export function NameWatermark({ size }: { size: keyof typeof heights }) {
   const height = heights[size];

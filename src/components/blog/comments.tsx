@@ -53,7 +53,6 @@ export function Comments() {
           inputPosition="top"
           theme={resolvedTheme === "dark" ? "dark" : "light"}
           lang="en"
-          loading="lazy"
         />
       ) : null}
     </div>

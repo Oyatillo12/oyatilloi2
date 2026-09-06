@@ -118,8 +118,9 @@
   }
 }
 
-/* Outlined name behind the header. The stroke opacity is the only knob;
-   text contrast over it is checked in .scratch/redesign/baseline-audit.md. */
+/* Outlined name behind the header (ADR 0004 lists it as an accent use).
+   The stroke opacity is the only knob;
+   text over a stroke pixel must stay above 4.5:1 in both themes. */
 .watermark {
   opacity: 0.1;
 }

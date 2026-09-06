@@ -16,7 +16,7 @@ export async function Profile() {
         alt={site.name}
         width={112}
         height={112}
-        priority
+        preload
         unoptimized
         className="size-28 shrink-0 rounded-full border border-border object-cover"
       />

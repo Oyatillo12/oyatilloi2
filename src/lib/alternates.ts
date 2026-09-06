@@ -19,7 +19,15 @@ export function alternates(
       locales.map((other) => [other, `${site.url}/${other}${path}`]),
     ),
     types: {
-      "application/rss+xml": `${site.url}/${locale}/rss.xml`,
+      // Every locale's feed, current locale first, so a reader on either
+      // language learns that the other feed exists.
+      "application/rss+xml": [
+        locale,
+        ...routing.locales.filter((other) => other !== locale),
+      ].map((feedLocale) => ({
+        title: `${site.name} (${feedLocale})`,
+        url: `${site.url}/${feedLocale}/rss.xml`,
+      })),
     },
   };
 }

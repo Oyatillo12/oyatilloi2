@@ -46,6 +46,15 @@ Where the accent is used:
 - Hover state of navigation links in the header, which are neutral at
   rest and take the accent when hovered.
 - The `link` variant of Button and Badge.
+- Hover state of the other small navigation controls: the language link
+  in the header, the contact icons on the home page, and the title of a
+  blog card. Like the header nav, these are neutral at rest.
+- The name watermark behind the header: an outline stroke only, at an
+  opacity low enough (0.10 light, 0.16 dark) that `foreground`,
+  `muted-foreground`, and `brand` text laid over a stroke pixel still
+  clear 4.5:1 in both themes. This is the one place the accent is
+  drawn under text, and raising the opacity means re-checking those
+  ratios.
 
 Where the accent is not used:
 
