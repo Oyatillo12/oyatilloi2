@@ -1,11 +1,23 @@
 {
-  "HomePage": {
-    "title": "Hello World",
-    "description": "Dev career and personal blog."
+  "Site": {
+    "description": "Software engineer. Dev career, and personal blog."
+  },
+  "Nav": {
+    "blog": "Blog"
+  },
+  "Footer": {
+    "rss": "RSS"
+  },
+  "ThemeToggle": {
+    "label": "Toggle theme"
   },
   "LocaleSwitcher": {
     "label": "Language",
     "uz": "O'zbekcha",
     "en": "English"
+  },
+  "HomePage": {
+    "title": "Hello World",
+    "description": "Dev career and personal blog."
   }
 }

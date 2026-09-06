@@ -1,11 +1,23 @@
 {
-  "HomePage": {
-    "title": "Salom Dunyo",
-    "description": "Dasturchilik karyerasi va shaxsiy blog."
+  "Site": {
+    "description": "Dasturchi. Dasturchilik karyerasi va shaxsiy blog."
+  },
+  "Nav": {
+    "blog": "Blog"
+  },
+  "Footer": {
+    "rss": "RSS"
+  },
+  "ThemeToggle": {
+    "label": "Mavzuni almashtirish"
   },
   "LocaleSwitcher": {
     "label": "Til",
     "uz": "O'zbekcha",
     "en": "English"
+  },
+  "HomePage": {
+    "title": "Salom Dunyo",
+    "description": "Dasturchilik karyerasi va shaxsiy blog."
   }
 }
