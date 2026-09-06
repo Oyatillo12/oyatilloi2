@@ -17,7 +17,7 @@ export async function Header() {
         <nav className="flex items-center gap-1">
           <Link
             href="/blog"
-            className="px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className="px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-brand"
           >
             {t("blog")}
           </Link>

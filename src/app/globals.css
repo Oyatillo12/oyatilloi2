@@ -11,6 +11,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-geist-sans);
+  --color-brand: var(--brand);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -54,7 +55,10 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  /* The one accent. See docs/adr/0004-single-blue-accent.md for where it
+     may and may not be used. */
+  --brand: oklch(0.52 0.19 258);
+  --ring: var(--brand);
   --radius: 0.625rem;
 }
 
@@ -76,12 +80,13 @@
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --brand: oklch(0.75 0.14 250);
+  --ring: var(--brand);
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring;
   }
   body {
     @apply bg-background text-foreground;
@@ -92,13 +97,20 @@
 }
 
 @utility link {
-  @apply underline decoration-muted-foreground underline-offset-4 transition-colors;
-  @apply hover:decoration-foreground;
+  @apply text-brand underline decoration-brand/40 underline-offset-4 transition-colors;
+  @apply hover:decoration-brand active:decoration-brand;
 }
 
 /* Unlayered on purpose: @tailwindcss/typography ships its `prose` rules in a
    layer, and layered rules always lose to unlayered ones regardless of
    specificity. */
+
+/* Typography colours links through its own variables. Point them at the
+   accent so MDX links match every other link on the site. */
+.prose {
+  --tw-prose-links: var(--brand);
+  --tw-prose-invert-links: var(--brand);
+}
 
 /* Typography renders inline code wrapped in literal backticks. */
 .prose :where(code):not(:where(pre code))::before,
