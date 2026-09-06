@@ -8,6 +8,7 @@ import { PostMeta } from "@/components/blog/post-meta";
 import { mdxComponents } from "@/components/mdx/mdx-components";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { alternates } from "@/lib/alternates";
 import { getPost, getPostTranslations, getPosts } from "@/lib/posts";
 
 export function generateStaticParams({
@@ -40,6 +41,17 @@ export async function generateMetadata(
   return {
     title: post.title,
     description: post.description,
+    alternates: alternates(locale, `/blog/${slug}`, [
+      locale,
+      ...getPostTranslations(locale, slug),
+    ]),
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.description,
+      publishedTime: post.date,
+      tags: post.tags,
+    },
   };
 }
 

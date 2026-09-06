@@ -4,6 +4,7 @@ import { hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { PostCard } from "@/components/blog/post-card";
 import { routing } from "@/i18n/routing";
+import { alternates } from "@/lib/alternates";
 import { getPosts } from "@/lib/posts";
 
 export async function generateMetadata(
@@ -20,6 +21,7 @@ export async function generateMetadata(
   return {
     title: t("title"),
     description: t("description"),
+    alternates: alternates(locale, "/blog"),
   };
 }
 

@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { site } from "@/config/site";
+import { alternates } from "@/lib/alternates";
 import { Container } from "@/components/layout/container";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
@@ -34,6 +35,7 @@ export async function generateMetadata(
       template: `%s — ${site.name}`,
     },
     description: t("description"),
+    alternates: alternates(locale),
   };
 }
 
