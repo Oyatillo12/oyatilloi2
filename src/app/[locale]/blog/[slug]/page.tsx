@@ -5,6 +5,7 @@ import { hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { Badge } from "@/components/ui/badge";
 import { Comments } from "@/components/blog/comments";
+import { NameWatermark } from "@/components/layout/name-watermark";
 import { PostMeta } from "@/components/blog/post-meta";
 import { mdxComponents } from "@/components/mdx/mdx-components";
 import { Link } from "@/i18n/navigation";
@@ -76,6 +77,7 @@ export default async function PostPage({
 
   return (
     <article className="flex flex-col gap-6">
+      <NameWatermark size="sm" />
       <header className="flex flex-col gap-3">
         <h1 className="text-2xl font-medium">{post.title}</h1>
         <PostMeta date={post.date} readingTime={post.readingTime} />

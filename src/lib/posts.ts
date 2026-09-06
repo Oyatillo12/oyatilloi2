@@ -42,3 +42,15 @@ export function getPostTranslations(locale: Locale, slug: string): Locale[] {
     (other) => other !== locale && getPost(other, slug) !== undefined,
   );
 }
+
+/** Posts bucketed by publication year, newest year first, order preserved. */
+export function groupByYear(posts: Post[]): { year: string; posts: Post[] }[] {
+  const groups = new Map<string, Post[]>();
+
+  for (const post of posts) {
+    const year = post.date.slice(0, 4);
+    groups.set(year, [...(groups.get(year) ?? []), post]);
+  }
+
+  return [...groups].map(([year, posts]) => ({ year, posts }));
+}

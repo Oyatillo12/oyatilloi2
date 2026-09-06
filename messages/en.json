@@ -16,20 +16,23 @@
       "en": "English"
     }
   },
-  "Footer": {
-    "rss": "RSS"
-  },
   "ThemeToggle": {
     "label": "Toggle theme"
   },
   "LocaleSwitcher": {
-    "label": "Language",
-    "uz": "O'zbekcha",
+    "switchTo": "Switch to {language}",
+    "uz": "Uzbek",
     "en": "English"
   },
   "HomePage": {
-    "bio": "I'm Oyatillo, a frontend developer based in Uzbekistan. I write about building software, the developer career, and what I'm learning along the way.",
+    "about": "I'm a frontend developer in Uzbekistan, currently learning backend development. I write for junior and middle developers about what I build and what I learn along the way.",
     "latest": "Latest posts",
     "viewAll": "All posts"
+  },
+  "Social": {
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "telegram": "Telegram channel",
+    "instagram": "Instagram"
   }
 }

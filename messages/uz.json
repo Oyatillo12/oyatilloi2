@@ -16,20 +16,23 @@
       "en": "Inglizcha"
     }
   },
-  "Footer": {
-    "rss": "RSS"
-  },
   "ThemeToggle": {
     "label": "Mavzuni almashtirish"
   },
   "LocaleSwitcher": {
-    "label": "Til",
-    "uz": "O'zbekcha",
-    "en": "English"
+    "switchTo": "{language} tiliga o'tish",
+    "uz": "O'zbek",
+    "en": "Ingliz"
   },
   "HomePage": {
-    "bio": "Men Oyatilloman, O'zbekistonda ishlaydigan frontend dasturchiman. Bu yerda dasturlash, dasturchilik karyerasi va o'rganayotgan narsalarim haqida yozaman.",
+    "about": "Men O'zbekistondagi frontend dasturchiman, hozir backend dasturlashni o'rganyapman. Bu yerda junior va middle dasturchilar uchun nima qurayotganim va yo'l-yo'lakay o'rganayotgan narsalarim haqida yozaman.",
     "latest": "So'nggi maqolalar",
     "viewAll": "Barcha maqolalar"
+  },
+  "Social": {
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "telegram": "Telegram kanali",
+    "instagram": "Instagram"
   }
 }

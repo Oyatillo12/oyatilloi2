@@ -3,8 +3,10 @@ import { site } from "@/config/site";
 import { routing } from "@/i18n/routing";
 
 /**
- * Canonical URL plus the `hreflang` map for a route. `locales` is narrowed for
- * posts, which usually exist in one language only.
+ * Canonical URL, the `hreflang` map, and the RSS feed for a route. `locales`
+ * is narrowed for posts, which usually exist in one language only. The feed
+ * link is what lets feed readers discover the feed from any page, since it
+ * is no longer linked in the footer.
  */
 export function alternates(
   locale: Locale,
@@ -16,5 +18,8 @@ export function alternates(
     languages: Object.fromEntries(
       locales.map((other) => [other, `${site.url}/${other}${path}`]),
     ),
+    types: {
+      "application/rss+xml": `${site.url}/${locale}/rss.xml`,
+    },
   };
 }

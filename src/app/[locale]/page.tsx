@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import { PostCard } from "@/components/blog/post-card";
-import { site } from "@/config/site";
+import { PostRow } from "@/components/blog/post-row";
+import { Profile } from "@/components/home/profile";
+import { NameWatermark } from "@/components/layout/name-watermark";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { getPosts } from "@/lib/posts";
@@ -21,21 +22,19 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
 
   return (
     <div className="flex flex-col gap-12">
-      <section className="flex flex-col gap-4">
-        <h1 className="text-2xl font-medium">{site.name}</h1>
-        <p className="text-muted-foreground">{t("bio")}</p>
-      </section>
+      <NameWatermark size="lg" />
+      <Profile />
 
       {posts.length > 0 ? (
-        <section className="flex flex-col gap-6">
+        <section className="flex flex-col gap-4">
           <h2 className="text-sm font-medium text-muted-foreground">
             {t("latest")}
           </h2>
-          <div className="flex flex-col gap-8">
+          <ul className="flex flex-col gap-3">
             {posts.map((post) => (
-              <PostCard key={post.slug} post={post} />
+              <PostRow key={post.slug} post={post} />
             ))}
-          </div>
+          </ul>
           <p>
             <Link href="/blog" className="text-sm link">
               {t("viewAll")}

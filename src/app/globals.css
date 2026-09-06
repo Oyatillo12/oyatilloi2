@@ -49,7 +49,9 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  /* Darker than the library default (0.556) so muted text clears 4.5:1
+     on the muted surface and over the watermark stroke. */
+  --muted-foreground: oklch(0.51 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
@@ -94,6 +96,57 @@
   html {
     @apply font-sans;
   }
+}
+
+/* Sticky header: the bottom border is transparent at the top of the page and
+   fades in over the first 48px of scroll. Browsers without scroll-driven
+   animations keep the border on at all times, which is the old look. */
+.site-header {
+  border-bottom: 1px solid var(--border);
+}
+@supports (animation-timeline: scroll()) {
+  .site-header {
+    border-bottom-color: transparent;
+    animation: header-border linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 48px;
+  }
+  @keyframes header-border {
+    to {
+      border-bottom-color: var(--border);
+    }
+  }
+}
+
+/* Outlined name behind the header. The stroke opacity is the only knob;
+   text contrast over it is checked in .scratch/redesign/baseline-audit.md. */
+.watermark {
+  opacity: 0.1;
+}
+.dark .watermark {
+  opacity: 0.16;
+}
+
+/* CSS-only tooltip for icon-only links, shown on hover and keyboard focus.
+   The label also lives in aria-label, so this is purely visual. */
+.tooltip {
+  position: relative;
+}
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 0.375rem);
+  left: 50%;
+  translate: -50% 0;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 120ms;
+  @apply rounded-md border border-border bg-popover px-2 py-1 text-xs text-popover-foreground shadow-sm;
+}
+.tooltip:hover::after,
+.tooltip:focus-visible::after {
+  opacity: 1;
 }
 
 @utility link {
