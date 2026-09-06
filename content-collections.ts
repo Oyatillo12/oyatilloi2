@@ -18,6 +18,7 @@ const posts = defineCollection({
     date: z.iso.date(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
+    content: z.string(),
   }),
   transform: async (doc, ctx) => {
     const [slug, locale] = doc._meta.fileName.replace(/\.mdx$/, "").split(".");

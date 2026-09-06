@@ -49,3 +49,4 @@ messages/*.d.json.ts
 
 # local mdx fixture, never published
 content/posts/_*.mdx
+public/_*.png

@@ -95,3 +95,41 @@
   @apply underline decoration-muted-foreground underline-offset-4 transition-colors;
   @apply hover:decoration-foreground;
 }
+
+/* Unlayered on purpose: @tailwindcss/typography ships its `prose` rules in a
+   layer, and layered rules always lose to unlayered ones regardless of
+   specificity. */
+
+/* Typography renders inline code wrapped in literal backticks. */
+.prose :where(code):not(:where(pre code))::before,
+.prose :where(code):not(:where(pre code))::after {
+  content: none;
+}
+.prose :where(code):not(:where(pre code)) {
+  @apply rounded bg-muted px-1 py-0.5 font-normal;
+}
+
+/* rehype-pretty-code emits both themes as custom properties on the block and
+   on every token. These rules pick the set matching the active theme. */
+.prose pre {
+  @apply border border-border;
+  background-color: var(--shiki-light-bg);
+}
+.prose pre code span {
+  color: var(--shiki-light);
+}
+.dark .prose pre {
+  background-color: var(--shiki-dark-bg);
+}
+.dark .prose pre code span {
+  color: var(--shiki-dark);
+}
+
+/* Filename header emitted for fenced blocks that carry a title. */
+.prose [data-rehype-pretty-code-title] {
+  @apply mt-6 rounded-t-lg border border-b-0 border-border bg-muted px-4 py-2;
+  @apply font-mono text-xs text-muted-foreground;
+}
+.prose [data-rehype-pretty-code-title] + pre {
+  @apply mt-0 rounded-t-none;
+}

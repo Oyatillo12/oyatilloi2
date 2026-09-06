@@ -10,6 +10,9 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
+    // Lets TypeScript pick up messages/*.d.json.ts, the typed message
+    // declarations next-intl generates, instead of the raw JSON.
+    "allowArbitraryExtensions": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,

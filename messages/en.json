@@ -5,6 +5,17 @@
   "Nav": {
     "blog": "Blog"
   },
+  "Blog": {
+    "title": "Blog",
+    "description": "Notes on building software.",
+    "empty": "No posts yet.",
+    "readingTime": "{minutes, number} min read",
+    "alsoAvailable": "Also available in",
+    "locale": {
+      "uz": "Uzbek",
+      "en": "English"
+    }
+  },
   "Footer": {
     "rss": "RSS"
   },
