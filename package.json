@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -16,7 +19,6 @@
     "@giscus/react": "^3.1.0",
     "@tailwindcss/typography": "^0.5.20",
     "class-variance-authority": "^0.7.1",
-    "cmdk": "^1.1.1",
     "cn": "^0.2.4",
     "feed": "^6.0.0",
     "geist": "^1.7.2",

@@ -1,0 +1,6 @@
+.next
+.content-collections
+node_modules
+pnpm-lock.yaml
+messages/*.d.json.ts
+pnpm-workspace.yaml

@@ -2,6 +2,7 @@ import { defineCollection, defineConfig } from "@content-collections/core";
 import { compileMDX } from "@content-collections/mdx";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import { z } from "zod";
 
@@ -10,9 +11,11 @@ const posts = defineCollection({
   directory: "content/posts",
   include: "**/*.mdx",
   schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    date: z.string(),
+    title: z.string().min(1),
+    description: z.string().min(1),
+    // Authored as YYYY-MM-DD. Validated here so a malformed date fails the
+    // build instead of silently breaking sorting and the RSS feed.
+    date: z.iso.date(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
   }),
@@ -22,6 +25,7 @@ const posts = defineCollection({
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
         rehypeSlug,
+        [rehypeAutolinkHeadings, { behavior: "wrap" }],
         [
           rehypePrettyCode,
           { theme: { light: "github-light", dark: "github-dark" } },
@@ -40,5 +44,5 @@ const posts = defineCollection({
 });
 
 export default defineConfig({
-  collections: [posts],
+  content: [posts],
 });
