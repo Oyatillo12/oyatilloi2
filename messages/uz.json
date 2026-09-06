@@ -28,7 +28,8 @@
     "en": "English"
   },
   "HomePage": {
-    "title": "Salom Dunyo",
-    "description": "Dasturchilik karyerasi va shaxsiy blog."
+    "bio": "Men Oyatilloman, O'zbekistonda ishlaydigan frontend dasturchiman. Bu yerda dasturlash, dasturchilik karyerasi va o'rganayotgan narsalarim haqida yozaman.",
+    "latest": "So'nggi maqolalar",
+    "viewAll": "Barcha maqolalar"
   }
 }

@@ -28,7 +28,8 @@
     "en": "English"
   },
   "HomePage": {
-    "title": "Hello World",
-    "description": "Dev career and personal blog."
+    "bio": "I'm Oyatillo, a frontend developer based in Uzbekistan. I write about building software, the developer career, and what I'm learning along the way.",
+    "latest": "Latest posts",
+    "viewAll": "All posts"
   }
 }
