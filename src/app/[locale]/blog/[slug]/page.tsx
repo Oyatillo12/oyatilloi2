@@ -4,6 +4,7 @@ import { MDXContent } from "@content-collections/mdx/react";
 import { hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { Badge } from "@/components/ui/badge";
+import { Comments } from "@/components/blog/comments";
 import { PostMeta } from "@/components/blog/post-meta";
 import { mdxComponents } from "@/components/mdx/mdx-components";
 import { Link } from "@/i18n/navigation";
@@ -106,6 +107,9 @@ export default async function PostPage({
       <div className="prose max-w-none prose-neutral dark:prose-invert">
         <MDXContent code={post.body} components={mdxComponents} />
       </div>
+      <section className="mt-8 border-t border-border pt-8">
+        <Comments />
+      </section>
     </article>
   );
 }
