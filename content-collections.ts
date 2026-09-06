@@ -29,7 +29,10 @@ const posts = defineCollection({
         [rehypeAutolinkHeadings, { behavior: "wrap" }],
         [
           rehypePrettyCode,
-          { theme: { light: "github-light", dark: "github-dark" } },
+          {
+            // The plain github-light theme has orange tokens below 4.5:1.
+            theme: { light: "github-light-high-contrast", dark: "github-dark" },
+          },
         ],
       ],
     });
