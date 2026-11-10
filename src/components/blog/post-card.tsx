@@ -1,5 +1,5 @@
 import type { Post } from "content-collections";
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 import { PostMeta } from "@/components/blog/post-meta";
 
 /**
@@ -9,7 +9,10 @@ import { PostMeta } from "@/components/blog/post-meta";
  */
 export function PostCard({ post }: { post: Post }) {
   return (
-    <article className="relative flex flex-col gap-2 rounded-lg border border-border p-4 transition-colors hover:border-muted-foreground/40 hover:bg-muted/50 has-focus-visible:outline-2 has-focus-visible:outline-offset-2">
+    <article
+      lang={post.language}
+      className="relative flex flex-col gap-2 rounded-lg border border-border p-4 transition duration-200 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-muted/50 hover:shadow-sm has-focus-visible:outline-2 has-focus-visible:outline-offset-2"
+    >
       <h3 className="text-lg font-medium">
         <Link
           href={`/blog/${post.slug}`}

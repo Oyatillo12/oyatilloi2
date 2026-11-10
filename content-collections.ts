@@ -21,7 +21,12 @@ const posts = defineCollection({
     content: z.string(),
   }),
   transform: async (doc, ctx) => {
-    const [slug, locale] = doc._meta.fileName.replace(/\.mdx$/, "").split(".");
+    // `<slug>.<language>.mdx`. The language is part of the filename rather
+    // than the frontmatter so that two languages of one article cannot
+    // collide on a single file.
+    const [slug, language] = doc._meta.fileName
+      .replace(/\.mdx$/, "")
+      .split(".");
     const body = await compileMDX(ctx, doc, {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
@@ -40,7 +45,7 @@ const posts = defineCollection({
     return {
       ...doc,
       slug,
-      locale,
+      language,
       body,
       readingTime: Math.ceil(doc.content.split(/\s+/).length / 200),
     };

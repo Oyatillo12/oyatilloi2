@@ -1,9 +1,14 @@
+import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import { site } from "@/config/site";
 import { Container } from "@/components/layout/container";
-import { LocaleSwitcher } from "@/components/layout/locale-switcher";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
+
+const navLink =
+  "relative rounded-sm px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 " +
+  // Accent underline that grows from the centre on hover, so the nav reacts
+  // without the text jumping colour.
+  "after:absolute after:inset-x-2 after:-bottom-0.5 after:h-px after:origin-center after:scale-x-0 after:bg-brand after:transition-transform after:duration-200 hover:after:scale-x-100";
 
 export async function Header() {
   const t = await getTranslations("Nav");
@@ -22,14 +27,10 @@ export async function Header() {
           {site.name}
         </Link>
         <nav className="flex shrink-0 items-center gap-1">
-          <Link
-            href="/blog"
-            className="rounded-sm px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2"
-          >
+          <Link href="/blog" className={navLink}>
             {t("blog")}
           </Link>
           <ThemeToggle />
-          <LocaleSwitcher />
         </nav>
       </Container>
     </header>

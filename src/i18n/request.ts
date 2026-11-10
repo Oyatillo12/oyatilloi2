@@ -1,19 +1,12 @@
-import { hasLocale } from "next-intl";
 import { getRequestConfig } from "next-intl/server";
-import { locale as rootLocale } from "next/root-params";
-import { routing } from "./routing";
+import { site } from "@/config/site";
 
-export default getRequestConfig(async ({ locale }) => {
-  // `locale` is only set when it is passed explicitly, e.g.
-  // `getTranslations({locale: "en"})` in a route handler, where
-  // `next/root-params` is not available yet.
-  const requested = locale ?? (await rootLocale());
-  const resolved = hasLocale(routing.locales, requested)
-    ? requested
-    : routing.defaultLocale;
-
-  return {
-    locale: resolved,
-    messages: (await import(`../../messages/${resolved}.json`)).default,
-  };
-});
+/**
+ * The interface is English only, so there is no locale to negotiate and no
+ * locale segment in the URL. next-intl is kept for the message catalogue and
+ * for date and number formatting, both of which need a locale to be named.
+ */
+export default getRequestConfig(async () => ({
+  locale: site.locale,
+  messages: (await import("../../messages/en.json")).default,
+}));

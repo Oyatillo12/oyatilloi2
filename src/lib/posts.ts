@@ -1,18 +1,43 @@
 import { allPosts, type Post } from "content-collections";
-import type { Locale } from "next-intl";
-import { routing } from "@/i18n/routing";
 
-const knownLocales: readonly string[] = routing.locales;
+/**
+ * Languages a post may be written in. The interface is English only, so this
+ * is not a site locale: it is metadata about the article, used for the `lang`
+ * attribute on the page and nowhere else. Posts of every language share one
+ * listing and one feed.
+ */
+export const postLanguages = ["en", "uz"] as const;
 
-// The locale comes from the filename (`<slug>.<locale>.mdx`), which no schema
-// can validate. Fail the build loudly rather than dropping a post silently.
+export type PostLanguage = (typeof postLanguages)[number];
+
+const isPostLanguage = (value: string): value is PostLanguage =>
+  (postLanguages as readonly string[]).includes(value);
+
+// The language comes from the filename (`<slug>.<language>.mdx`), which no
+// schema can validate. Fail the build loudly rather than dropping a post
+// silently. The slug alone identifies a post now that every language shares
+// one listing, so a slug reused in two languages is a collision, not a
+// translation: `/blog/<slug>` could only ever serve one of them.
+const seen = new Map<string, string>();
+
 for (const post of allPosts) {
-  if (!knownLocales.includes(post.locale)) {
+  if (!isPostLanguage(post.language)) {
     throw new Error(
-      `Post "${post._meta.filePath}" is missing a valid locale suffix. ` +
-        `Expected <slug>.(${routing.locales.join("|")}).mdx`,
+      `Post "${post._meta.filePath}" is missing a valid language suffix. ` +
+        `Expected <slug>.(${postLanguages.join("|")}).mdx`,
     );
   }
+
+  const duplicate = seen.get(post.slug);
+
+  if (duplicate) {
+    throw new Error(
+      `Posts "${duplicate}" and "${post._meta.filePath}" share the slug ` +
+        `"${post.slug}". Slugs must be unique across every language.`,
+    );
+  }
+
+  seen.set(post.slug, post._meta.filePath);
 }
 
 // Drafts are visible while writing and hidden everywhere else.
@@ -21,26 +46,12 @@ const isVisible = (post: Post) =>
 
 const byNewestFirst = (a: Post, b: Post) => b.date.localeCompare(a.date);
 
-export function getPosts(locale: Locale): Post[] {
-  return allPosts
-    .filter((post) => post.locale === locale && isVisible(post))
-    .sort(byNewestFirst);
+export function getPosts(): Post[] {
+  return allPosts.filter(isVisible).sort(byNewestFirst);
 }
 
-export function getPost(locale: Locale, slug: string): Post | undefined {
-  return allPosts.find(
-    (post) => post.locale === locale && post.slug === slug && isVisible(post),
-  );
-}
-
-/**
- * Locales this post also exists in. Posts are not translated by default, so
- * this is empty for most of them.
- */
-export function getPostTranslations(locale: Locale, slug: string): Locale[] {
-  return routing.locales.filter(
-    (other) => other !== locale && getPost(other, slug) !== undefined,
-  );
+export function getPost(slug: string): Post | undefined {
+  return allPosts.find((post) => post.slug === slug && isVisible(post));
 }
 
 /** Posts bucketed by publication year, newest year first, order preserved. */

@@ -27,12 +27,13 @@ One accent colour, blue, exposed as the `brand` token. It has a light
 value and a dark value, both chosen so that accent-coloured text passes
 WCAG AA (4.5:1) on the page background and on every neutral surface in
 that theme. Ratios below are WCAG 2 relative-luminance contrast computed
-in sRGB; `secondary` shares its value with `muted` in both themes.
+in sRGB; `secondary` shares its value with `muted` in both themes. The dark
+row is measured against the blue-tinted dark neutrals introduced with 0005.
 
 | Theme | Value                  | On background | On card | On muted |
 | ----- | ---------------------- | ------------- | ------- | -------- |
 | Light | `oklch(0.52 0.19 258)` | 5.7:1         | 5.7:1   | 5.2:1    |
-| Dark  | `oklch(0.75 0.14 250)` | 8.9:1         | 8.1:1   | 6.8:1    |
+| Dark  | `oklch(0.75 0.14 250)` | 8.7:1         | 7.9:1   | 6.7:1    |
 
 Where the accent is used:
 
@@ -43,24 +44,22 @@ Where the accent is used:
   focus-visible outline on the site is blue. Rings are drawn at full
   opacity: the half-transparent ring the component library ships fails
   the 3:1 non-text contrast requirement in both themes once it is blue.
-- Hover state of navigation links in the header, which are neutral at
-  rest and take the accent when hovered.
+- Hover state of navigation links in the header, as the underline that
+  grows under them. The label itself goes from `muted-foreground` to
+  `foreground`, so the accent is the movement, not the text.
 - The `link` variant of Button and Badge.
-- Hover state of the other small navigation controls: the language link
-  in the header, the contact icons on the home page, and the title of a
-  blog card. Like the header nav, these are neutral at rest.
-- The name watermark behind the header: an outline stroke only, at an
-  opacity low enough (0.10 light, 0.16 dark) that `foreground`,
-  `muted-foreground`, and `brand` text laid over a stroke pixel still
-  clear 4.5:1 in both themes. This is the one place the accent is
-  drawn under text, and raising the opacity means re-checking those
-  ratios.
+- Hover state of the other small navigation controls: the contact icons
+  on the home page, the border of a blog card, and the title of a blog
+  card. Like the header nav, these are neutral at rest.
+  The home page hero scene is not an accent surface and is not governed by
+  this list; see [0005. 3D hero scene](0005-3d-hero-scene.md). Other pages
+  have no background at all; a post is a wall of text.
 
 Where the accent is not used:
 
 - Body text, headings, and metadata. These remain `foreground` and
   `muted-foreground`.
-- Surfaces. Backgrounds, cards, borders, code blocks, callouts, and the
+- Surfaces. Cards, borders, code blocks, callouts, and the
   hover backgrounds of buttons and menu items stay neutral. The vendored
   component library's `accent` token is a neutral hover surface and is
   unrelated to `brand`; it keeps its grey value.

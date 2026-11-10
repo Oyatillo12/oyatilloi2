@@ -1,34 +1,22 @@
 import { ImageResponse } from "next/og";
-import { hasLocale } from "next-intl";
 import { site } from "@/config/site";
-import { routing } from "@/i18n/routing";
 import { getPost, getPosts } from "@/lib/posts";
 
 export const alt = site.name;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export function generateStaticParams({
-  params,
-}: {
-  params: { locale: string };
-}) {
-  if (!hasLocale(routing.locales, params.locale)) {
-    return [];
-  }
-
-  return getPosts(params.locale).map((post) => ({ slug: post.slug }));
+export function generateStaticParams() {
+  return getPosts().map((post) => ({ slug: post.slug }));
 }
 
 export default async function Image({
   params,
 }: {
-  params: Promise<{ locale: string; slug: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { locale, slug } = await params;
-  const post = hasLocale(routing.locales, locale)
-    ? getPost(locale, slug)
-    : undefined;
+  const { slug } = await params;
+  const post = getPost(slug);
 
   return new ImageResponse(
     <div

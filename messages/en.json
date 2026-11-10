@@ -1,6 +1,6 @@
 {
   "Site": {
-    "description": "Software engineer. Dev career, and personal blog."
+    "description": "A blog by Oyatillo Abdishukurov about frontend engineering — React, Next.js, TypeScript and the lessons from building real products."
   },
   "Nav": {
     "blog": "Blog"
@@ -9,23 +9,19 @@
     "title": "Blog",
     "description": "Notes on building software.",
     "empty": "No posts yet.",
-    "readingTime": "{minutes, number} min read",
-    "alsoAvailable": "Also available in",
-    "locale": {
-      "uz": "Uzbek",
-      "en": "English"
-    }
+    "readingTime": "{minutes, number} min read"
   },
   "ThemeToggle": {
     "label": "Toggle theme"
   },
-  "LocaleSwitcher": {
-    "switchTo": "Switch to {language}",
-    "uz": "Uzbek",
-    "en": "English"
-  },
   "HomePage": {
-    "about": "I'm a frontend developer in Uzbekistan, currently learning backend development. I write for junior and middle developers about what I build and what I learn along the way.",
+    "scene": {
+      "code": "Frontend engineer",
+      "atom": "React · Next.js · TypeScript",
+      "globe": "Based in Tashkent",
+      "page": "Writing about what I learn"
+    },
+    "about": "Hi, I'm Oyatillo — a frontend engineer in Tashkent. I spend my days in React, Next.js and TypeScript, building the kind of interfaces people work in all day. This is where I write about it: the bugs that taught me something, the tricks that made an app faster, and the things I wish someone had explained to me earlier.",
     "latest": "Latest posts",
     "viewAll": "All posts"
   },

@@ -32,8 +32,6 @@ export function Comments() {
     return () => observer.disconnect();
   }, []);
 
-  // Comments are optional: without the three giscus values the section is
-  // simply absent, so the site runs before the Discussions repo exists.
   if (!repo || !repoId || !categoryId) {
     return null;
   }

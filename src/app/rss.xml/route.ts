@@ -1,43 +1,30 @@
 import { Feed } from "feed";
-import { hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { site } from "@/config/site";
-import { routing } from "@/i18n/routing";
 import { getPosts } from "@/lib/posts";
 
 // Nothing here depends on the request, so the feed is written at build time.
 export const dynamic = "force-static";
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
+export async function GET() {
+  const t = await getTranslations("Site");
 
-export async function GET(
-  _request: Request,
-  { params }: RouteContext<"/[locale]/rss.xml">,
-) {
-  const { locale } = await params;
-
-  if (!hasLocale(routing.locales, locale)) {
-    return new Response("Not found", { status: 404 });
-  }
-
-  const t = await getTranslations({ locale, namespace: "Site" });
-  const posts = getPosts(locale);
-
+  // One feed for the whole site. A post written in Uzbek appears in it like
+  // any other; the feed language describes the site, not each item, because
+  // RSS 2.0 has no per-item language and `feed` emits none.
   const feed = new Feed({
-    id: `${site.url}/${locale}`,
-    link: `${site.url}/${locale}`,
+    id: site.url,
+    link: site.url,
     title: site.name,
     description: t("description"),
-    language: locale,
+    language: site.locale,
     copyright: `© ${new Date().getFullYear()} ${site.name}`,
-    feedLinks: { rss2: `${site.url}/${locale}/rss.xml` },
+    feedLinks: { rss2: `${site.url}/rss.xml` },
     author: { name: site.name, link: site.url },
   });
 
-  for (const post of posts) {
-    const url = `${site.url}/${locale}/blog/${post.slug}`;
+  for (const post of getPosts()) {
+    const url = `${site.url}/blog/${post.slug}`;
 
     feed.addItem({
       id: url,

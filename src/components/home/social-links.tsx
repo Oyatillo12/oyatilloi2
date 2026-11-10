@@ -27,7 +27,7 @@ export async function SocialLinks() {
             target="_blank"
             aria-label={label}
             data-tooltip={label}
-            className="tooltip flex size-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2"
+            className="tooltip flex size-9 items-center justify-center rounded-lg text-muted-foreground transition duration-200 hover:-translate-y-0.5 hover:bg-muted hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             <Icon className="size-5" />
           </a>

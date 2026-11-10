@@ -5,35 +5,28 @@ details, no plans.
 
 ## Post
 
-A single article. Written by hand, one file per language version. A Post
-always belongs to exactly one Locale; it is never language-neutral.
+A single article. Written by hand, one file per article. A Post always
+has exactly one Post Language.
 
 ## Slug
 
-The stable identifier for a Post, shared across every language version of
-it. Two Posts with the same Slug in different Locales are the same article
-in two languages. The Slug is part of the URL and must not change once a
-Post is published.
+The stable identifier for a Post. It is unique across the whole site: no
+two Posts share one, whatever language they are written in. The Slug is
+part of the URL and must not change once a Post is published.
 
-## Locale
+## Post Language
 
-A language the site is available in. Currently Uzbek (the default) and
-English. A Locale applies both to the interface and to Posts, but the two
-are independent: a reader on the English interface may find that a given
-Post exists only in Uzbek.
-
-## Translation
-
-Another Locale that the same Slug exists in. Translations are the
-exception, not the rule — most Posts exist in one Locale only. A Post is
-never shown in a Locale it was not written for, so a reader is never
-served a language they did not ask for.
+The language a Post is written in. It is a property of the article, not
+of the site: the interface is English and is never translated. Every
+Post appears in the same listing and the same feed regardless of its
+Post Language, and nothing on the page announces it — a reader tells
+from the title.
 
 ## Draft
 
-A Post that is not ready to be read. Drafts are visible while writing and
-absent everywhere else — they do not appear in listings, feeds, or at
-their own URL once published to the live site.
+A Post that is not ready to be read. Drafts are visible while writing
+and absent everywhere else — they do not appear in listings, feeds, or
+at their own URL once published to the live site.
 
 ## Fixture
 
