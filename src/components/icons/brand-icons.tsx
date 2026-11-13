@@ -1,5 +1,5 @@
 import type { SVGProps } from "react";
-import { siGithub, siInstagram, siTelegram } from "simple-icons";
+import { siGithub, siInstagram, siTelegram, siX } from "simple-icons";
 
 type IconProps = Omit<SVGProps<SVGSVGElement>, "children">;
 
@@ -25,6 +25,7 @@ function brandIcon(path: string) {
 export const GitHubIcon = brandIcon(siGithub.path);
 export const TelegramIcon = brandIcon(siTelegram.path);
 export const InstagramIcon = brandIcon(siInstagram.path);
+export const XIcon = brandIcon(siX.path);
 
 // Simple Icons removed LinkedIn at the brand owner's request, so this is the
 // glyph the package used to ship (CC0), kept here on the same 24×24 grid.

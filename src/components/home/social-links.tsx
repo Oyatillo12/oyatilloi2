@@ -5,6 +5,7 @@ import {
   InstagramIcon,
   LinkedInIcon,
   TelegramIcon,
+  XIcon,
 } from "@/components/icons/brand-icons";
 
 export async function SocialLinks() {
@@ -15,6 +16,7 @@ export async function SocialLinks() {
     { label: t("github"), href: site.social.github, Icon: GitHubIcon },
     { label: t("telegram"), href: site.social.telegram, Icon: TelegramIcon },
     { label: t("instagram"), href: site.social.instagram, Icon: InstagramIcon },
+    { label: t("x"), href: site.social.x, Icon: XIcon },
   ];
 
   return (

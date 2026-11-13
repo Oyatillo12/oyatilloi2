@@ -6,8 +6,8 @@ export const site = {
   social: {
     github: "https://github.com/Oyatillo12",
     linkedin: "https://www.linkedin.com/in/oyatillo12",
-    // PLACEHOLDERS: the owner replaces these before launch.
-    telegram: "https://t.me/REPLACE-ME",
-    instagram: "https://www.instagram.com/REPLACE-ME",
+    telegram: "https://t.me/Oyatilloi2",
+    instagram: "https://www.instagram.com/oyatilloi2",
+    x: "https://x.com/oyatilloi2",
   },
 } as const;
